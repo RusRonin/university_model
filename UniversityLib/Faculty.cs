@@ -4,15 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UniversityModel
+namespace UniversityLib
 {
-    class Faculty
+    public class Faculty
     {
-        public University University { get; private set; }
-        public List<Cathedra> Cathedras { get; private set; }
+        public University University { get; set; }
+        public List<Cathedra> Cathedras { get; private set; } = new List<Cathedra>();
 
         public void AddCathedra(Cathedra cathedra)
         {
+            cathedra.Faculty = this;
             Cathedras.Add(cathedra);
         }
 

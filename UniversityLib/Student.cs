@@ -4,19 +4,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UniversityModel
+namespace UniversityLib
 {
-    class Student
+    public class Student
     {
-        public string StudentId { get; set; }
+        public int StudentId { get; private set; }
 
         public Cathedra Cathedra { get; set; }
-        public List<Course> Courses { get; set; }
-        public List<Teacher> Teachers { get; set; }
+        public List<Course> Courses { get; set; } = new List<Course>();
+        public List<Teacher> Teachers { get; set; } = new List<Teacher>();
+
+        public Student(int id)
+        {
+            StudentId = id;
+        }
 
         public void AddCourse(Course course)
         {
-            if (Cathedra.CheckCourseExistance(course))
+            if ((course.Cathedra != null) && (course.Cathedra.CheckCourseExistance(course)))
             {
                 course.Students.Add(this);
                 Courses.Add(course);
@@ -33,7 +38,7 @@ namespace UniversityModel
 
         public void AddTeacher(Teacher teacher)
         {
-            if (Cathedra.CheckTeacherExistance(teacher))
+            if ((teacher.Cathedra != null) && (teacher.Cathedra.CheckTeacherExistance(teacher)))
             {
                 teacher.Students.Add(this);
                 Teachers.Add(teacher);
@@ -47,4 +52,5 @@ namespace UniversityModel
                 Teachers.Remove(teacher);
             }
         }
+    }
 }
