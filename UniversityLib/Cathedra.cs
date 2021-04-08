@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UniversityModel
+namespace UniversityLib
 {
-    class Cathedra
+    public class Cathedra
     {
-        public Faculty Faculty { get; private set; }
-        public List<Teacher> Teachers { get; private set; }
-        public List<Course> Courses { get; private set; }
+        public Faculty Faculty { get; set; }
+        public List<Teacher> Teachers { get; private set; } = new List<Teacher>();
+        public List<Course> Courses { get; private set; } = new List<Course>();
  
         public void AddTeacher(Teacher teacher)
         {
